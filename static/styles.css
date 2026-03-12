@@ -1,0 +1,238 @@
+/* ── Reset & base ───────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green:      #00ff00;
+  --green-dim:  #00cc00;
+  --green-dark: #004400;
+  --bg:         #0a0a0a;
+  --bg-card:    #111111;
+  --border:     #1a3a1a;
+  --text:       #cccccc;
+  --font:       'Courier New', Courier, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.7;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a { color: var(--green-dim); text-decoration: none; }
+a:hover { color: var(--green); text-decoration: underline; }
+
+code {
+  background: var(--green-dark);
+  color: var(--green);
+  padding: 0.1em 0.4em;
+  border-radius: 3px;
+  font-family: var(--font);
+}
+
+/* ── Header ─────────────────────────────────────── */
+.site-header {
+  border-bottom: 1px solid var(--green-dark);
+  padding: 2rem 1.5rem 1.5rem;
+  text-align: center;
+}
+
+.header-inner { max-width: 860px; margin: 0 auto; }
+
+.site-header h1 {
+  color: var(--green);
+  font-size: 2.4rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.tagline {
+  color: var(--green-dim);
+  font-size: 0.95rem;
+  margin-bottom: 1.2rem;
+}
+
+.site-nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.4rem 1.2rem; }
+.site-nav a {
+  color: var(--green-dim);
+  font-size: 0.9rem;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  transition: background 0.15s;
+}
+.site-nav a:hover { background: var(--green-dark); color: var(--green); text-decoration: none; }
+
+/* ── Main ────────────────────────────────────────── */
+.site-main { flex: 1; max-width: 860px; width: 100%; margin: 0 auto; padding: 2.5rem 1.5rem; }
+
+/* ── Sections ────────────────────────────────────── */
+.section { margin-bottom: 3rem; }
+
+.section h2 {
+  color: var(--green);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--green-dark);
+}
+
+.prompt { color: var(--green-dim); margin-right: 0.5rem; user-select: none; }
+
+.section p { margin-bottom: 0.8rem; }
+.section strong { color: #e0e0e0; }
+
+/* ── Certifications ──────────────────────────────── */
+.cert-meta { font-size: 0.88rem; color: #888; margin-bottom: 1.4rem; }
+
+.cert-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.cert-card {
+  border: 1px solid var(--green);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cert-badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  background: var(--bg-card);
+  text-decoration: none;
+}
+
+.cert-badge:hover { background: #161616; }
+
+.cert-img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 8px rgba(0, 255, 0, 0.15));
+  transition: filter 0.2s;
+}
+
+.cert-badge:hover .cert-img {
+  filter: drop-shadow(0 0 14px rgba(0, 255, 0, 0.35));
+}
+
+.cert-label {
+  background: var(--bg-card);
+  padding: 0.7rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+}
+
+.cert-label strong {
+  color: var(--green);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+}
+
+.cert-name {
+  color: #bbb;
+  font-size: 0.78rem;
+  line-height: 1.3;
+}
+
+.cert-dates {
+  color: var(--green-dim);
+  font-size: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+/* ── Skills ──────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-group {
+  background: var(--bg-card);
+  border: 1px solid var(--green-dark);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+}
+
+.skill-group h3 {
+  color: var(--green-dim);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.7rem;
+}
+
+.skill-group ul { list-style: none; padding: 0; }
+.skill-group li { padding: 0.15rem 0; font-size: 0.9rem; }
+.skill-group li::before { content: '> '; color: var(--green-dim); }
+
+/* ── Homelab ─────────────────────────────────────── */
+
+
+/* ── Contact ─────────────────────────────────────── */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.8rem;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--bg-card);
+  border: 1px solid var(--green-dark);
+  border-radius: 6px;
+  padding: 0.6rem 1.1rem;
+  color: var(--green-dim);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.contact-link i { font-size: 1.1rem; color: var(--green); }
+
+.contact-link:hover {
+  border-color: var(--green);
+  color: var(--green);
+  text-decoration: none;
+}
+
+/* ── Footer ──────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--green-dark);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #444;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 750px) {
+  .cert-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 500px) {
+
+  .skills-grid { grid-template-columns: 1fr; }
+  .site-header h1 { font-size: 1.8rem; }
+  .site-main { padding: 1.5rem 1rem; }
+}
+
+
