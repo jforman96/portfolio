@@ -1,8 +1,6 @@
-
 # portfolio
 
 Static portfolio site for [www.jflab.cz](https://www.jflab.cz).
-
 
 ## Project structure
 
