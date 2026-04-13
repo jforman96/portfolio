@@ -225,32 +225,6 @@ code {
   text-decoration: none;
 }
 
-.pgp-box {
-  margin-top: 1rem;
-  border: 1px solid var(--green-dark);
-  border-radius: 6px;
-  background: var(--bg-card);
-  padding: 0.5rem 0.8rem;
-}
-
-.pgp-box summary {
-  color: var(--green-dim);
-  cursor: pointer;
-  user-select: none;
-}
-
-.pgp-key-block {
-  margin-top: 0.7rem;
-  color: #9fe69f;
-  background: #0d130d;
-  border: 1px solid var(--green-dark);
-  border-radius: 4px;
-  padding: 0.7rem;
-  overflow-x: auto;
-  font-size: 0.78rem;
-  line-height: 1.4;
-}
-
 /* ── Footer ──────────────────────────────────────── */
 .site-footer {
   border-top: 1px solid var(--green-dark);
