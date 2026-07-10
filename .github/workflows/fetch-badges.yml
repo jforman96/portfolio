@@ -29,12 +29,23 @@ jobs:
             og=$(printf '%s' "$html" | tr '>' '\n' | grep 'og:image' | grep -o 'https://images.credly.com[^"]*' | head -1)
             uuid=$(printf '%s' "$og" | grep -o 'images/[0-9a-f-]\{36\}' | head -1 | cut -d/ -f2)
             echo "template uuid: $uuid"
-            curl -fsSL -A "$UA" -o "static/badges/$name.png" "https://images.credly.com/size/340x340/images/$uuid/image.png"
+            ok=""
+            for url in \
+              "https://images.credly.com/size/340x340/images/$uuid/image.png" \
+              "https://images.credly.com/images/$uuid/image.png" \
+              "https://images.credly.com/size/680x680/images/$uuid/image.png"; do
+              if curl -fsSL -A "$UA" -o "static/badges/$name.png" "$url"; then
+                echo "downloaded: $url"; ok=1; break
+              else
+                echo "unavailable: $url"
+              fi
+            done
+            [ -n "$ok" ] || { echo "ERROR: no image variant available for $name"; exit 1; }
+            file "static/badges/$name.png"
             file "static/badges/$name.png" | grep -qi 'PNG image' || { echo "ERROR: $name is not a PNG"; exit 1; }
           }
           fetch_badge rhcsa    d0f8358e-c90b-48b4-a07c-50c3ff8acb03
           fetch_badge rhce     4b263b5a-d915-4e40-8b89-5a761ccdc5fe
-          fetch_badge rhce2    d246caf0-1f53-49b4-b7c9-4481046f3b08
           fetch_badge rhosvirt 3313a051-f166-4c48-84d3-2f35e83e3b36
           ls -la static/badges/
 
