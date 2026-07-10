@@ -284,8 +284,17 @@
     <p class="footer-note">built with plain HTML/CSS &nbsp;·&nbsp; no trackers</p>
     <script>
       document.getElementById('year').textContent = new Date().getFullYear();
-      console.log('%c jforman@jflab:~$ whoami ', 'background:#0a0a0a;color:#00ff00;font-family:monospace;font-size:14px;padding:4px 8px;border:1px solid #004400;');
-      console.log('%cCurious one, aren\'t you? I like that.\n\n$ cat /etc/motd\n"If it can be automated, automate it. If it can break, monitor it."\n\n$ gpg --locate-keys jforman@jflab.cz   # yes, WKD works here\n$ curl -s jflab.cz/humans.txt\n\nSay hi: jforman@jflab.cz', 'color:#00cc00;font-family:monospace;');
+      console.log('%c jforman@jflab:~$ neofetch ', 'background:#0a0a0a;color:#00ff00;font-family:monospace;font-size:14px;padding:4px 8px;border:1px solid #004400;');
+      console.log('%c' + [
+        '        .---.      jforman@jflab.cz',
+        '       /  o  \\     ─────────────────',
+        '      |  >_   |    OS:      Linux (what else?)',
+        '       \\     /     Uptime:  8+ years in production',
+        '        `---\'      Shell:   bash · ansible',
+        '                   Certs:   RHCSA · RHCE · RHOSVIRT',
+        '                   PGP:     gpg --locate-keys jforman@jflab.cz',
+        '                   Extras:  /humans.txt · /.well-known/security.txt',
+      ].join('\n'), 'color:#00cc00;font-family:monospace;line-height:1.4;');
     </script>
   </footer>
 
