@@ -159,9 +159,6 @@ code {
   filter: drop-shadow(0 0 14px rgba(0, 255, 0, 0.35));
 }
 
-.cert-placeholder { color: var(--green-dim); }
-.cert-badge:hover .cert-placeholder { color: var(--green); }
-
 .cert-label {
   background: var(--bg-card);
   padding: 0.7rem 1rem;
