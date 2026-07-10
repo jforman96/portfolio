@@ -14,9 +14,10 @@ portfolio/
 ├── README.md         # This file
 ├── index.html        # Main page content
 ├── static/
+│   ├── badges/       # Self-hosted certification badge images
 │   ├── favicon.svg   # Site icon
 │   └── styles.css    # Site styling
 ```
 
-No build step, no JavaScript frameworks, no external assets except the
-Credly badge images — plain HTML and CSS deployed to GitHub Pages.
+No build step, no JavaScript frameworks, no external assets — plain
+HTML and CSS deployed to GitHub Pages.

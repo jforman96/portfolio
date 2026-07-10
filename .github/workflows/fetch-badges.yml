@@ -49,6 +49,20 @@ jobs:
             file "static/badges/$name.png"
             file "static/badges/$name.png" | grep -qi 'PNG image' || { echo "ERROR: $name is not a PNG"; exit 1; }
           }
+          echo "===== profile badge list"
+          profile=$(curl -fsSL -A "$UA" "https://www.credly.com/users/jforman/badges.json" || true)
+          if printf '%s' "$profile" | jq -e '.data' >/dev/null 2>&1; then
+            printf '%s' "$profile" | jq -r '.data[] | [.id, (.badge_template.name // "?")] | @tsv'
+            ansible_rhce=$(printf '%s' "$profile" | jq -r '.data[] | select(.badge_template.name | test("Engineer in Ansible|Ansible Automation")) | .id' | head -1)
+            ansible_adv=$(printf '%s' "$profile" | jq -r '.data[] | select(.badge_template.name | test("Advanced.*Ansible|Ansible.*Advanced")) | .id' | head -1)
+            echo "ansible rhce badge id: $ansible_rhce"
+            echo "ansible advanced badge id: $ansible_adv"
+            [ -n "$ansible_rhce" ] && fetch_badge ansible "$ansible_rhce"
+            [ -n "$ansible_adv" ] && fetch_badge advansible "$ansible_adv"
+          else
+            echo "profile JSON unavailable; response head:"
+            printf '%s' "$profile" | head -c 500
+          fi
           fetch_badge rhcsa    d0f8358e-c90b-48b4-a07c-50c3ff8acb03
           fetch_badge rhce     4b263b5a-d915-4e40-8b89-5a761ccdc5fe
           fetch_badge rhosvirt 3313a051-f166-4c48-84d3-2f35e83e3b36
