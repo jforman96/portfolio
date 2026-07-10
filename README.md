@@ -8,7 +8,7 @@ Static portfolio site for [www.jflab.cz](https://www.jflab.cz).
 portfolio/
 ├── .github/          # GitHub workflows/settings
 ├── .well-known/
-│   ├── openpgpkey/   # WKD — PGP key discovery (gpg --locate-keys)
+│   ├── openpgpkey/   # WKD: PGP key discovery (gpg --locate-keys)
 │   └── security.txt  # Security contact (RFC 9116)
 ├── 404.html          # Themed error page
 ├── LICENSE           # License file
@@ -23,5 +23,5 @@ portfolio/
 │   └── styles.css    # Site styling
 ```
 
-No build step, no JavaScript frameworks, no external assets — plain
+No build step, no JavaScript frameworks, no external assets. Plain
 HTML and CSS deployed to GitHub Pages.

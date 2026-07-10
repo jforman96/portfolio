@@ -7,9 +7,9 @@
 /* SITE */
   Language: English
   Doctype: HTML5
-  Components: none — plain HTML & CSS, no frameworks, no trackers
+  Components: plain HTML & CSS, no frameworks, no trackers
   Hosting: GitHub Pages
   Standards: HTML5, CSS3, JSON-LD, RFC 9116 (security.txt), WKD
 
 /* THANKS */
-  You, for reading the source. That's the spirit.
+  Thanks for reading the source.
