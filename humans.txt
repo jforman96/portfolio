@@ -1,0 +1,15 @@
+/* TEAM */
+  Admin, engineer, everything else: Jan Forman
+  Contact: jforman [at] jflab.cz
+  GPG: gpg --locate-keys jforman@jflab.cz
+  Location: Czech Republic
+
+/* SITE */
+  Language: English
+  Doctype: HTML5
+  Components: none — plain HTML & CSS, no frameworks, no trackers
+  Hosting: GitHub Pages
+  Standards: HTML5, CSS3, JSON-LD, RFC 9116 (security.txt), WKD
+
+/* THANKS */
+  You, for reading the source. That's the spirit.
