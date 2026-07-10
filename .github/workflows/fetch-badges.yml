@@ -29,12 +29,16 @@ jobs:
             og=$(printf '%s' "$html" | tr '>' '\n' | grep 'og:image' | grep -o 'https://images.credly.com[^"]*' | head -1)
             uuid=$(printf '%s' "$og" | grep -o 'images/[0-9a-f-]\{36\}' | head -1 | cut -d/ -f2)
             echo "template uuid: $uuid"
-            echo "-- all image URLs for this template found in page:"
-            printf '%s' "$html" | grep -o "https://images.credly.com[^\"'&\\\\ ]*$uuid[^\"'&\\\\ ]*" | sort -u | tee /tmp/urls.txt
-            candidates=$(grep -v -e thumb -e facebook /tmp/urls.txt | sed 's|/size/[0-9x]*/|/size/340x340/|' | sort -u)
-            fallbacks=$(cat /tmp/urls.txt)
+            embed=$(curl -fsSL -A "$UA" "https://www.credly.com/embedded_badge/$id" || true)
+            api=$(curl -fsSL -A "$UA" "https://www.credly.com/api/v1/public_badges/$id" || true)
+            echo "-- image URLs found across badge page, embed page, and API:"
+            printf '%s\n%s\n%s' "$html" "$embed" "$api" | sed 's|\\/|/|g' \
+              | grep -o 'https://images.credly.com[^"'"'"'&\\ ]*' | sort -u | tee /tmp/urls.txt || true
+            best=$( (grep "$uuid" /tmp/urls.txt || true) | (grep -v -e thumb -e facebook || true) )
+            sized=$(printf '%s' "$best" | sed 's|images.credly.com/images/|images.credly.com/size/340x340/images/|; s|/size/[0-9x]*/|/size/340x340/|')
+            thumbs=$( (grep "$uuid" /tmp/urls.txt || true) )
             ok=""
-            for url in $candidates "https://images.credly.com/size/340x340/images/$uuid/image.png" $fallbacks; do
+            for url in $sized $best "https://images.credly.com/size/340x340/images/$uuid/image.png" $thumbs; do
               if curl -fsSL -A "$UA" -o "static/badges/$name.png" "$url"; then
                 echo "downloaded: $url"; ok=1; break
               else
