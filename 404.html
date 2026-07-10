@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Jan Forman</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0a0a0a" />
+  <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
+  <link rel="stylesheet" href="/static/styles.css" />
+  <style>
+    .error-page {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 1.5rem;
+      gap: 0.6rem;
+    }
+    .error-page h1 { color: var(--green); font-size: 1.6rem; text-shadow: 0 0 12px rgba(0, 255, 0, 0.35); }
+  </style>
+</head>
+<body>
+  <main class="error-page">
+    <p class="shell-line" aria-hidden="true">jforman@jflab:~$ cat requested-page<span class="cursor"></span></p>
+    <h1>404: command not found</h1>
+    <p>The page you are looking for does not exist.</p>
+    <p><a href="/">cd ~ (back to home)</a></p>
+  </main>
+</body>
+</html>
