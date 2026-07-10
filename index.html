@@ -19,10 +19,9 @@
 <body>
   <header class="site-header">
     <div class="header-inner">
-      <p class="shell-line" aria-hidden="true">jforman@jflab:~$ whoami<span class="cursor"></span></p>
+      <p class="shell-line" aria-hidden="true">jforman@jflab:~$<span class="cursor"></span></p>
       <h1>Jan Forman</h1>
       <p class="tagline">Linux &amp; DevOps Engineer &nbsp;·&nbsp; Open Source enthusiast</p>
-      <p class="stat-line">8+ yrs Linux &nbsp;·&nbsp; 3&times; Red Hat certified &nbsp;·&nbsp; Czech Republic</p>
       <nav class="site-nav" aria-label="Main">
         <a href="#about">About</a>
         <a href="#certifications">Certifications</a>
@@ -75,10 +74,15 @@
     </div>
 
     <!-- RHCE -->
+    <!-- TODO: swap the placeholder SVG for the real Credly badge image once the correct image URL is known -->
     <div class="cert-card">
       <a class="cert-badge" href="https://www.credly.com/badges/4b263b5a-d915-4e40-8b89-5a761ccdc5fe" target="_blank" rel="noopener">
-        <img src="https://images.credly.com/size/340x340/images/19c4e804-54fe-4857-b022-7cfd5520596c/image.png"
-             alt="RHCE badge" class="cert-img" width="160" height="160" loading="lazy" />
+        <svg class="cert-img cert-placeholder" viewBox="0 0 160 160" width="160" height="160" role="img" aria-label="RHCE badge — view on Credly">
+          <rect x="6" y="6" width="148" height="148" rx="12" fill="none" stroke="currentColor" stroke-width="2" />
+          <rect x="14" y="14" width="132" height="132" rx="8" fill="none" stroke="currentColor" stroke-width="1" opacity="0.4" />
+          <text x="80" y="78" text-anchor="middle" font-family="inherit" font-size="22" fill="currentColor">&gt;_ RHCE</text>
+          <text x="80" y="122" text-anchor="middle" font-family="inherit" font-size="10" fill="currentColor" opacity="0.5">view on credly</text>
+        </svg>
       </a>
       <div class="cert-label">
         <strong>RHCE</strong>
