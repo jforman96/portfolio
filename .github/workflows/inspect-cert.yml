@@ -1,0 +1,32 @@
+# One-time helper: prints the public Red Hat certification verification data
+# for the site owner's cert ID into the job log. Safe to delete after use.
+name: Inspect Red Hat certifications
+
+on:
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch verification page and API candidates
+        run: |
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+          CERT=210-185-120
+          for url in \
+            "https://rhtapps.redhat.com/verify?certId=$CERT" \
+            "https://rhtapps.redhat.com/verify/api/v1/certifications?certId=$CERT" \
+            "https://rhtapps.redhat.com/verify/rest/certifications?certId=$CERT" \
+            "https://rhtapps.redhat.com/certifications/badge/verify/$CERT"; do
+            echo "===== $url"
+            body=$(curl -fsSL -A "$UA" --max-time 30 "$url" 2>&1) || { echo "(request failed: $body)" | head -c 300; echo; continue; }
+            echo "(length: ${#body})"
+            printf '%s' "$body" | head -c 4000
+            echo
+            echo "-- lines mentioning certifications:"
+            printf '%s' "$body" | tr '<' '\n' | grep -i -e 'certified' -e 'certification' -e 'exam' | head -40 || true
+            echo "-- script/js references:"
+            printf '%s' "$body" | grep -o 'src="[^"]*"' | head -20 || true
+          done
