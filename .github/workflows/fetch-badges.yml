@@ -1,0 +1,44 @@
+# One-time helper: downloads the official Credly badge images so the site
+# can serve them locally instead of hotlinking. Safe to delete after use.
+name: Fetch Credly badge images
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download badge images from Credly
+        run: |
+          set -euo pipefail
+          mkdir -p static/badges
+          UA="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
+          fetch_badge() {
+            name="$1"; id="$2"
+            echo "== $name ($id)"
+            html=$(curl -fsSL -A "$UA" "https://www.credly.com/badges/$id")
+            img=$(printf '%s' "$html" | tr '>' '\n' | grep 'og:image' | grep -o 'https://images.credly.com[^"]*' | head -1)
+            echo "og:image: $img"
+            img="${img/\/size\/680x680\///size/340x340/}"
+            curl -fsSL -A "$UA" -o "static/badges/$name.png" "$img"
+            file "static/badges/$name.png" | grep -qi 'PNG image' || { echo "ERROR: $name is not a PNG"; exit 1; }
+          }
+          fetch_badge rhcsa    d0f8358e-c90b-48b4-a07c-50c3ff8acb03
+          fetch_badge rhce     d246caf0-1f53-49b4-b7c9-4481046f3b08
+          fetch_badge rhosvirt 3313a051-f166-4c48-84d3-2f35e83e3b36
+          ls -la static/badges/
+
+      - name: Commit images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add static/badges
+          git commit -m "Add self-hosted Credly badge images"
+          git push
