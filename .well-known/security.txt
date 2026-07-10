@@ -1,5 +1,15 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
 Contact: mailto:jforman@jflab.cz
 Encryption: https://jflab.cz/static/jan-forman-publickey.asc
 Preferred-Languages: en
 Canonical: https://jflab.cz/.well-known/security.txt
 Expires: 2027-04-13T00:00:00Z
+-----BEGIN PGP SIGNATURE-----
+
+iHUEARYKAB0WIQSxBdz4ofUKWTQrFkgUvZE/8h95RgUCalFaZQAKCRAUvZE/8h95
+Rq80AP9owkINiwfOVHGL2q5UnyPYtk8MlKpfpUhIu5ta/qs8dQEAvNcAuIM43ZmT
+NNsZ5yPWst6UOKxJ9tnuzBY5F2reOwQ=
+=O+C/
+-----END PGP SIGNATURE-----
